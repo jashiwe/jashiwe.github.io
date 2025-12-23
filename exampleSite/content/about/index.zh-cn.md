@@ -1,8 +1,8 @@
 ---
-title: "关于 LoveIt"
+title: "张献伟"
 date: 2019-08-02T11:04:49+08:00
 draft: false
-description: "关于 LoveIt"
+description: "张献伟"
 images: ["/Apple-Devices-Preview.png"]
 
 lightgallery: true
@@ -11,114 +11,80 @@ math:
   enable: true
 ---
 
-{{< style "img { height: 1.25rem; }" >}}
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/dillonzq/LoveIt?style=flat-square)](https://github.com/dillonzq/LoveIt/releases)
-[![Hugo](https://img.shields.io/badge/Hugo-%5E0.128.0-ff4088?style=flat-square&logo=hugo)](https://gohugo.io/)
-[![License](https://img.shields.io/github/license/dillonzq/LoveIt?style=flat-square)](https://github.com/dillonzq/LoveIt/blob/master/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/dillonzq/LoveIt?style=social)](https://github.com/dillonzq/LoveIt)
-[![GitHub forks](https://img.shields.io/github/forks/dillonzq/LoveIt?style=social)](https://github.com/dillonzq/LoveIt/fork)
-{{< /style >}}
+张献伟，男。2016 年毕业于西安交通大学医学院，获医学硕士学位。现就职于天津市疾病预防控制中心环境健康与公共卫生所。研究方向为儿童青少年健康。
 
-> [:(far fa-kiss-wink-heart fa-fw): LoveIt](https://github.com/dillonzq/LoveIt) 是一个由 {{< person "https://dillonzq.com/" Dillon "LoveIt 主题的作者" "/Dillon.png" >}} 开发的**简洁**、**优雅**且**高效**的 [Hugo](https://gohugo.io/) 博客主题。
->
-> 它的原型基于 [LeaveIt 主题](https://github.com/liuzc/LeaveIt) 和 [KeepIt 主题](https://github.com/Fastbyte01/KeepIt)。
+- 邮箱：jashiwe\@163.com
+- Github: [https://github.com/jashiwe](https://github.com/jashiwe)
+- 个人主页：[https://jashiwe.github.io](https://jashiwe.github.io)
 
-![Hugo 主题 LoveIt](/images/Apple-Devices-Preview.png "Hugo 主题 LoveIt")
+## 教育和工作背景
 
-## 特性
+- 2016.07-今 天津市疾病预防控制中心
+- 2009.09-2016.07 西安交通大学 临床医学（预防医学，七年制）
 
-### 性能和 SEO
+## 研究方向
 
-* :(fas fa-rocket fa-fw): **性能**优化：在 [Google PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights) 中， [99]/[100] 的移动设备得分和 [100]/[100] 的桌面设备得分
-* :(fab fa-searchengin fa-fw): 使用基于 JSON-LD 格式 的 **SEO SCHEMA** 文件进行 SEO 优化
-* :(fab fa-google fa-fw): 支持 **[Google Analytics](https://analytics.google.com/analytics)**
-* :(far fa-chart-bar fa-fw): 支持 **[Fathom Analytics](https://usefathom.com/)**
-* :(fas fa-chart-column fa-fw): 支持 **[Plausible Analytics](https://plausible.io/)**
-* :(fab fa-yandex-international fa-fw): 支持 **[Yandex Metrica](https://metrica.yandex.com/)**
-* :(fas fa-sitemap fa-fw): 支持搜索引擎的**网站验证** (Google, Bind, Yandex 和 Baidu)
-* :(fas fa-tachometer-alt fa-fw): 支持所有第三方库的 **CDN**
-* :(fas fa-cloud-download-alt fa-fw): 基于 [lazysizes](https://github.com/aFarkas/lazysizes) 自动转换图片为**懒加载**
+- 青少年慢性病和常见病行为和环境因素致病机制研究
+- 学生常见病防治与干预
+- 青少年大数据监测及学校卫生管理
 
-### 外观和布局
+## 研究兴趣
 
-* :(fas fa-mobile-screen fa-fw): **[桌面端]/[移动端] 响应式**布局
-* :(fas fa-circle-half-stroke fa-rotate-180 fa-fw): **[浅色]/[深色]** 主题模式
-* :(fas fa-layer-group fa-fw): 全局一致的**设计语言**
-* :(fas fa-ellipsis-h fa-fw): 支持**分页**
-* :(far fa-list-alt fa-fw): 易用和自动展开的**文章目录**
-* :(fas fa-language fa-fw): 支持**多语言**和国际化
-* :(fab fa-css3-alt fa-fw): 美观的 **CSS 动画**
+- 数据分析
+- 软件开发
+- DOTA2
 
-#### 社交和评论系统
+## 部分论文
 
-* :(far fa-user fa-fw): 支持 **[Gravatar](https://gravatar.com)** 头像
-* :(fas fa-user-circle fa-fw): 支持本地**头像**
-* :(far fa-id-card fa-fw): 支持多达 **81** 种社交链接
-* :(fas fa-share-square fa-fw): 支持多达 **27** 种网站分享
-* :(far fa-comment fa-fw): 支持 **[Disqus](https://disqus.com)** 评论系统
-* :(far fa-comment-dots fa-fw): 支持 **[Gitalk](https://github.com/gitalk/gitalk)** 评论系统
-* :(far fa-comment-alt fa-fw): 支持 **[Valine](https://valine.js.org/)** 评论系统
-* :(far fa-comments fa-fw): 支持 **[Facebook comments](https://developers.facebook.com/docs/plugins/comments/)** 评论系统
-* :(fas fa-comment fa-fw): 支持 **[Telegram comments](https://comments.app/)** 评论系统
-* :(fas fa-comment-dots fa-fw): 支持 **[Commento](https://commento.io/)** 评论系统
-* :(far fa-comment-alt fa-fw): 支持 **[utterances](https://utteranc.es/)** 评论系统
-* :(fas fa-comments fa-fw): 支持 **[giscus](https://giscus.app/)** 评论系统
+- **Zhang, X**., Zhang, R., Feng, Y., Zhao, D., Sun, P., Chu, Y., Liu,
 
-### 扩展功能
+  Z., Ferrari, G., Rezende, L. F. M., Wu, Y., Wang, Y., & Zhang, H.
 
-* :(fas fa-search fa-fw): 支持基于 [Lunr.js](https://lunrjs.com/) 或 [algolia](https://www.algolia.com/) 的**搜索**
-* :(far fa-grin-tongue-wink fa-fw): 支持 **Twemoji**
-* :(fas fa-code fa-fw): 支持**代码高亮**
-* :(far fa-copy fa-fw): 一键**复制代码**到剪贴板
-* :(far fa-images fa-fw): 支持基于 [lightGallery](https://github.com/sachinchoolur/lightgallery) 的**图片画廊**
-* :(fab fa-font-awesome fa-fw): 支持 **[Font Awesome](https://fontawesome.com/) 图标**的扩展 Markdown 语法
-* :(fas fa-superscript fa-fw): 支持**上标注释**的扩展 Markdown 语法
-* :(fas fa-percentage fa-fw): 支持**分数**的扩展 Markdown 语法
-* :(fas fa-square-root-alt fa-fw): 支持基于 [$\KaTeX$](https://katex.org/) 的**数学公式**
-* :(fas fa-project-diagram fa-fw): 支持基于 [mermaid](https://github.com/mermaid-js/mermaid) 的**图表** shortcode
-* :(fas fa-chart-pie fa-fw): 支持基于 [ECharts](https://echarts.apache.org/) 的**交互式数据可视化** shortcode
-* :(fas fa-map-marked-alt fa-fw): 支持基于 [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js) 的 **Mapbox** shortcode
-* :(fas fa-music fa-fw): 支持基于 [APlayer](https://github.com/MoePlayer/APlayer) 和 [MetingJS](https://github.com/metowolf/MetingJS) 的**音乐播放器** shortcode
-* :(fab fa-bilibili fa-fw): 支持 **Bilibili 视频** shortcode
-* :(fas fa-note-sticky fa-fw): 支持多种**注释**的 shortcode
-* :(fab fa-css3 fa-fw): 支持**自定义样式**的 shortcode
-* :(fab fa-js-square fa-fw): 支持**自定义脚本**的 shortcode
-* :(fas fa-i-cursor fa-fw): 支持基于 [TypeIt](https://typeitjs.com/) 的**打字动画** shortcode
-* :(fas fa-cookie-bite fa-fw): 支持基于 [cookieconsent](https://github.com/osano/cookieconsent) 的 **Cookie 许可横幅**
-* :(far fa-user-circle fa-fw): 支持**人物标签**的 shortcode
-* ...
+  (2025). Sedentary behavior and risk of depressive symptoms among
 
-## 许可协议
+  adolescents in Tianjin: A cross-sectional and longitudinal analysis
 
-LoveIt 根据 **MIT** 许可协议授权。
+  of a school-based study. Journal of affective disorders, 120452.
 
-更多信息请查看 [LICENSE 文件](https://github.com/dillonzq/LoveIt/blob/master/LICENSE)。
+  Advance online publication.
 
-## 特别感谢
+  [https://doi.org/10.1016/j.jad.2025.120452](https://doi.org/10.1016/j.jad.2025.120452)
+- **Zhang, X**., Nie, J., Sun, Z. et al. Internet addiction and
 
-LoveIt 主题中用到了以下项目，感谢它们的作者：
+  anxiety-depressive comorbidity among chinese adolescents: the
 
-* [modern-normalize](https://github.com/sindresorhus/modern-normalize)
-* [Font Awesome](https://fontawesome.com/)
-* [Simple Icons](https://github.com/simple-icons/simple-icons)
-* [Animate.css](https://daneden.github.io/animate.css/)
-* [autocomplete](https://github.com/algolia/autocomplete)
-* [Lunr.js](https://lunrjs.com/)
-* [algoliasearch](https://github.com/algolia/algoliasearch-client-javascript)
-* [lazysizes](https://github.com/aFarkas/lazysizes)
-* [object-fit-images](https://github.com/fregante/object-fit-images)
-* [Twemoji](https://github.com/twitter/twemoji)
-* [emoji-data](https://github.com/iamcal/emoji-data)
-* [lightGallery](https://github.com/sachinchoolur/lightgallery)
-* [clipboard.js](https://github.com/zenorocha/clipboard.js)
-* [Sharer.js](https://github.com/ellisonleao/sharer.js)
-* [TypeIt](https://typeitjs.com/)
-* [$\KaTeX$](https://katex.org/)
-* [mermaid](https://github.com/mermaid-js/mermaid)
-* [ECharts](https://echarts.apache.org/)
-* [Mapbox GL JS](https://docs.mapbox.com/mapbox-gl-js)
-* [APlayer](https://github.com/MoePlayer/APlayer)
-* [MetingJS](https://github.com/metowolf/MetingJS)
-* [Gitalk](https://github.com/gitalk/gitalk)
-* [Valine](https://valine.js.org/)
-* [cookieconsent](https://github.com/osano/cookieconsent)
+  mitigating effects of physical activity in a large-scale
+
+  cross-sectional study. BMC Public Health 25, 2898 (2025).
+
+  [https://doi.org/10.1186/s12889-025-24137-6](https://doi.org/10.1186/s12889-025-24137-6)
+- **Zhang, X**., Wang, X., Li, F., Sun, Z., Xu, K., & Liu, Z. (2025).
+
+  Cumulative social-ecological risk factors and health-risk behaviors
+
+  among Chinese adolescents: A latent class analysis. Journal of
+
+  affective disorders, 388, 119614.
+
+  [https://doi.org/10.1016/j.jad.2025.119614](https://doi.org/10.1016/j.jad.2025.119614)
+- **张献伟**,王晓阳,李凤芹,等.青少年生物节律紊乱与抑郁、焦虑症状的网络分析\[J\].现代预防医学,2025,52(17):3149-3153+3201.DOI:10.20043/j.cnki.MPM.202502184.
+- 刘忠慧,**张献伟**,赵赛赛,等.
+
+  天津市9\~18岁儿童青少年生活方式对不同多病模式的累积效应分析\[J\].
+
+  中华预防医学杂志,2025,59(02)：174-180.DOI:10.3760/cma.j.cn112150-20240808-00637
+- 徐渴,杨晓艳,**张献伟**,等.2023年天津市小学生近视现状及影响因素分析\[J\].中国慢性病预防与控制,2025,33(10):754-758.DOI:10.16386/j.cjpccd.issn.1004-6194.20250115.0038.
+- **张献伟**,陈璐,刘忠慧,等.天津中小学生近视与脊柱侧弯共患现状及学校环境风险因素分析\[J\].中国学校卫生,2024,45(05):626-629+634.DOI:10.16835/j.cnki.1000-9817.2024162.
+- **张献伟**,王钰铭,孙志颖,等.空气污染短期暴露对天津市居民缺血性脑卒中复发影响及绿地修饰效应\[J\].环境与健康杂志,2024,41(01):48-52.DOI:10.16241/j.cnki.1001-5914.2024.01.012.
+- 孙志颖,**张献伟**,袁雯,等.中学生健康危险行为与肥胖和抑郁症状的关联\[J\].中国学校卫生,2024,45(10):1505-1510.DOI:10.16835/j.cnki.1000-9817.2024304.
+- 蒋家诺,刘忠慧,**张献伟**,等.天津市2019-2023年学校卫生工作开展状况\[J\].中国学校卫生,2024,45(05):620-625.DOI:10.16835/j.cnki.1000-9817.2024163.
+- **张献伟**,刘忠慧,孙志颖,等.2019—2021年天津市中小学校教学环境与生活设施卫生管理状况分析\[J\].职业与健康,2023,39(18):2524-2526+2532.DOI:10.13329/j.cnki.zyyjk.2023.0474.
+- **张献伟**,孙志颖,刘忠慧,等.天津市中学生脊柱侧弯流行特征及影响因素分析\[J\].中国学校卫生,2023,44(01):115-118.DOI:10.16835/j.cnki.1000-9817.2023.01.025.
+- **张献伟**,陈阳,王玉雯,等.2017—2018年天津市18家宾馆/酒店室内空气指标监测及其从业人员健康状况\[J\].职业与健康,2020,36(02):207-210.DOI:10.13329/j.cnki.zyyjk.2020.0053.
+- **张献伟**,徐美华,王玉雯,等.2016—2018年天津市大气PM2.5对儿童呼吸系统门诊量的时间序列分析\[J\].公共卫生与预防医学,2019,30(05):29-32.
+
+## 科研项目
+
+1. 天津市视光科学研究院，培育项目，NKSGP202510，负责人：张献伟
+2. 天津市视光科学研究院，重点项目，NKSGZ202412，负责人：汪磊
+3. 天津市卫生健康委员会，青年项目，TJWJ2024QN089，负责人：张献伟
