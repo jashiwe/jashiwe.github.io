@@ -2,21 +2,18 @@
 title: "关于"
 date: 2026-10-30
 ---
-天津市疾病预防控制中心环境健康与学校卫生研究所主管医师，天津预防医学会儿少卫生分会委员。做学校卫生与儿少卫生，研究儿童青少年健康，具体落在近视、脊柱侧弯、健康危险行为与心理健康上。
-
-这一页是简历式的自我介绍：研究方向、学术背景、发表与成果、在研课题、联系方式。
+一名平凡普通的公共卫生从业者。
 
 ## 研究兴趣
 
-- 儿童青少年近视、脊柱侧弯的流行特征与学校环境影响因素
-- 中学生症状性干眼与近视的共患关系
+- 儿童青少年近视、肥胖、脊柱侧弯的流行特征与学校环境影响因素
 - 体力活动、久坐行为、网络成瘾与抑郁焦虑的关联
 - 教室采光照明、课桌椅等教学环境的卫生学评价与标准
 - 学生常见病及健康危险行为监测
 
 ## 学术背景
 
-- 2021-01 至今　天津市疾病预防控制中心 环境健康与学校卫生研究所，主管医师
+- 2021-01 至今　天津市疾病预防控制中心，主管医师
 - 2016-07–2020-12　天津市疾病预防控制中心，医师
 - 2014-09–2016-07　西安交通大学 劳动卫生与环境卫生学，硕士
 - 2009-09–2014-07　西安交通大学 预防医学（七年制），学士
@@ -26,8 +23,8 @@ date: 2026-10-30
 ### 第一作者
 
 1. 2026　家庭运动支持环境类型与青少年中高强度体力活动层级关联的潜在剖面分析[J]. 中华流行病学杂志, 47(7): 1222-1228.
-1. 2026　Sedentary behavior and risk of depressive symptoms among adolescents in Tianjin: a cross-sectional and longitudinal analysis of a school-based study. *Journal of Affective Disorders*, 394(Pt A): 120452.
-1. 2025　Internet addiction and anxiety-depressive comorbidity among Chinese adolescents: the mitigating effects of physical activity in a large-scale cross-sectional study. *BMC Public Health*, 25: 2898.
+1. 2026　Sedentary behavior and risk of depressive symptoms among adolescents in Tianjin: a cross-sectional and longitudinal analysis of a school-based study. *Journal of Affective Disorders*, 394(Pt A): 120452.（共一第一）
+1. 2025　Internet addiction and anxiety-depressive comorbidity among Chinese adolescents: the mitigating effects of physical activity in a large-scale cross-sectional study. *BMC Public Health*, 25: 2898.（共一第一）
 1. 2025　Cumulative social-ecological risk factors and health-risk behaviors among Chinese adolescents: a latent class analysis. *Journal of Affective Disorders*, 388: 119614.
 1. 2025　青少年生物节律紊乱与抑郁、焦虑症状的网络分析[J]. 现代预防医学, 52(17): 3149-3153, 3201.
 1. 2024　天津中小学生近视与脊柱侧弯共患现状及学校环境风险因素分析[J]. 中国学校卫生, 45(5): 626-629, 634.
@@ -40,7 +37,7 @@ date: 2026-10-30
 ### 合作论文（通讯作者 / 共同第一作者）
 
 1. 2026　中学生社会生态学风险因素和体育活动发展轨迹与抑郁症状的关联[J]. 中国学校卫生, 47(5): 676-679.（通讯作者）
-1. 2026　Associations of general and abdominal adiposity with incident elevated blood pressure among Tianjin adolescents: a school-based longitudinal study. *BMC Public Health*. doi:10.1186/s12889-026-27691-9（共同第一作者）
+1. 2026　Associations of general and abdominal adiposity with incident elevated blood pressure among Tianjin adolescents: a school-based longitudinal study. *BMC Public Health*. doi:10.1186/s12889-026-27691-9（共一第三）
 1. 2025　天津市 9~18 岁儿童青少年生活方式对不同多病模式的累积效应分析[J]. 中华预防医学杂志, 59(2): 174-180.
 1. 2024　中学生健康危险行为与肥胖和抑郁症状的关联[J]. 中国学校卫生, 45(10): 1505-1510.
 1. 2024　天津市 2019—2023 年中小学生超重肥胖流行趋势及相关因素分析[J]. 中国学校卫生, 45(8): 1176-1180, 1185.
@@ -61,7 +58,7 @@ date: 2026-10-30
 - 国家发明专利　一种预防小学生近视和脊柱弯曲用的座椅（CN 202210687019.2，第 1 发明人）
 - 地方标准　《儿童青少年健康监测技术规范》（DB 12/T 1405-2024，第 2 起草人）
 - 软件著作权　中小学校教室环境卫生检测与评价软件 V1.0（软著登字第 17416934 号）
-- 论著　参编 1 部（<span class="todo">书名 / 出版社 / 年份待补</span>）
+- 论著　参编 1 部（<span class="todo">《公共卫生与预防医学精要》 / 北京出版社 / 2026年</span>）
 
 ## 讲授与科普
 
@@ -72,7 +69,7 @@ date: 2026-10-30
 ## 联系
 
 - 邮箱：<span class="todo">待确认</span>
-- 单位：天津市疾病预防控制中心 环境健康与学校卫生研究所（学校卫生科）
+- 单位：天津市疾病预防控制中心
 - 地址：<span class="todo">待确认</span>
 
 > 学校卫生做的事，大多不会立刻被看见——但它决定了一代人眼睛和脊柱的样子。
