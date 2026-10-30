@@ -6,7 +6,7 @@
 # 线上地址。部署到 GitHub Pages 时，workflow 会用 actions/configure-pages
 # 自动探测真实地址并覆盖这一项，所以这里填不填、填什么都不影响发布。
 # 用 `hugo server` 本地预览时也会被自动改成 http://localhost:1313/。
-baseURL: "https://jashiwe.github.io/Website/"
+baseURL: "https://jashiwe.github.io/"
 
 languageCode: "zh-cn"
 title: "张献伟"

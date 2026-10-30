@@ -118,41 +118,33 @@ git push
 
 ---
 
-## 四、发布（仓库已就绪，只差一次点击）
+## 四、发布（已配置完成）
 
-现状：仓库 `jashiwe/Website` 已建好、代码已推送，但 **Pages 还没启用**。
-Actions 第一次跑失败在「配置 Pages」这一步，报错是：
+仓库：<https://github.com/jashiwe/jashiwe.github.io>（仓库名与用户名同名，所以站点在**根路径**）
+站点：**<https://jashiwe.github.io/>**
 
+Pages 的 Source 已设为 `GitHub Actions`，之后**每次 push 自动编译发布**，不用再做任何设置。
+
+### 以后更新
+
+```bash
+git add -A
+git commit -m "新增：某篇文章"
+git push
 ```
-HttpError: Resource not accessible by integration
-Create Pages site failed.
-```
 
-这不是配置写错了，是 GitHub 的限制：工作流拿到的 token 无权「凭空创建」一个 Pages 站点，必须先在网页上启用一次。之后所有推送都会自动部署，不用再管。
+或在 GitHub Desktop 里写 Summary → **Commit to main** → **Push origin**。
+推完看 <https://github.com/jashiwe/jashiwe.github.io/actions>：「部署站点」绿勾后 1–2 分钟线上生效。
 
-### 1. 启用 Pages（一次性，约 20 秒）
+### 万一 Actions 红了
 
-1. 打开 <https://github.com/jashiwe/Website/settings/pages>
-2. **Build and deployment → Source** 选 **`GitHub Actions`**
-   （不是 `Deploy from a branch`，不要选分支，也不要选目录）
-3. 页面会提示可以创建，选完即生效
+2026-10-30 首次配置时踩过一次：报 `Resource not accessible by integration`，原因是仓库当时还没启用 Pages，工作流无权自己创建站点。**现在已启用，不会再出现**。真遇到了，就去 Settings → Pages 确认 Source 还是 `GitHub Actions`，然后点最近一次失败的重跑 **Re-run all jobs**。
 
-### 2. 重新跑一次
+其他常见红叉：`content/` 里某篇 front matter 的 YAML 写错（缩进、引号），或 `date` 用了未来时间。报错行号会直接指向那个 md 文件。
 
-1. 打开 <https://github.com/jashiwe/Website/actions>
-2. 点最近一次失败的「部署站点」→ 右上角 **Re-run all jobs**
-   （或者随便改个文件再推一次）
-3. 绿勾后等 1–2 分钟
+### 想改回子路径（不推荐）
 
-站点地址：**<https://jashiwe.github.io/Website/>**
-
-以后每次 `git push`，Actions 自动编译发布，不用再做任何设置。
-
-### 3. 关于 `/Website/` 这一层路径
-
-仓库名是 `Website`，所以站点落在子路径下。站内链接由 Hugo 的 `relURL` 生成，会自动带上这个前缀——**不用改任何文件**。
-
-想让网址变成干净的 `https://jashiwe.github.io/`，只能把仓库**改名为 `jashiwe.github.io`**（GitHub 对同名仓库会自动建用户站点）。改名后同样不用改文件，只把 `hugo.yaml` 里的 `baseURL` 换成新地址即可（workflow 本来就会自动覆盖，改它只是为了本地编译的绝对链接正确）。
+只有当仓库改名成别的名字时，站点才会落到 `/仓库名/` 下。站内链接由 Hugo 的 `relURL` 生成，会自动带上前缀；此时把 `hugo.yaml` 的 `baseURL` 一并改成新地址即可（workflow 里本来就会自动覆盖，改它只为本地编译的绝对链接正确）。
 
 ---
 
