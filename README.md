@@ -118,35 +118,41 @@ git push
 
 ---
 
-## 四、首次发布到 GitHub Pages
+## 四、发布（仓库已就绪，只差一次点击）
 
-**不需要给我任何授权**，你自己在 GitHub Desktop 里点几下。仓库我已经 `git init` 好了，分支 `main`。
+现状：仓库 `jashiwe/Website` 已建好、代码已推送，但 **Pages 还没启用**。
+Actions 第一次跑失败在「配置 Pages」这一步，报错是：
 
-### 1. 建仓库并推送
+```
+HttpError: Resource not accessible by integration
+Create Pages site failed.
+```
 
-1. GitHub Desktop → **File → Add Local Repository…** → 路径选 `E:\Website` → **Add Repository**
-2. 左下角 Summary 写 `初始化站点` → **Commit to main**
-3. 顶部 **Publish repository**
-4. ⚠️ **把 `Keep this code private` 的勾去掉**——Pages 免费版要求仓库公开
-5. Name 建议填 `你的用户名.github.io`，网址就是干净的 `https://你的用户名.github.io/`
-6. 点 **Publish repository**
+这不是配置写错了，是 GitHub 的限制：工作流拿到的 token 无权「凭空创建」一个 Pages 站点，必须先在网页上启用一次。之后所有推送都会自动部署，不用再管。
 
-### 2. 打开 Pages（关键一步，选错会一直 404）
+### 1. 启用 Pages（一次性，约 20 秒）
 
-1. 仓库页面 → **Settings** → 左侧 **Pages**
-2. **Source** 选 **`GitHub Actions`**（不是 `Deploy from a branch`）
-3. 不用选分支、不用点 Save，选完即生效
+1. 打开 <https://github.com/jashiwe/Website/settings/pages>
+2. **Build and deployment → Source** 选 **`GitHub Actions`**
+   （不是 `Deploy from a branch`，不要选分支，也不要选目录）
+3. 页面会提示可以创建，选完即生效
 
-然后去 **Actions** 页，第一次可能要点一下 **Run workflow** 手动触发，或者随便再推一次。
+### 2. 重新跑一次
 
-### 3. 仓库名与网址
+1. 打开 <https://github.com/jashiwe/Website/actions>
+2. 点最近一次失败的「部署站点」→ 右上角 **Re-run all jobs**
+   （或者随便改个文件再推一次）
+3. 绿勾后等 1–2 分钟
 
-| 仓库名 | 访问地址 | 说明 |
-|---|---|---|
-| `你的用户名.github.io` | `https://你的用户名.github.io/` | **推荐**，根路径 |
-| 任意名字，如 `website` | `https://你的用户名.github.io/website/` | 多一层路径。站内链接用 Hugo 的 `relURL` 生成，会自动带上，**不用改任何文件** |
+站点地址：**<https://jashiwe.github.io/Website/>**
 
-`baseURL` 也不用改——workflow 里用 `actions/configure-pages` 自动探测真实地址并覆盖它。
+以后每次 `git push`，Actions 自动编译发布，不用再做任何设置。
+
+### 3. 关于 `/Website/` 这一层路径
+
+仓库名是 `Website`，所以站点落在子路径下。站内链接由 Hugo 的 `relURL` 生成，会自动带上这个前缀——**不用改任何文件**。
+
+想让网址变成干净的 `https://jashiwe.github.io/`，只能把仓库**改名为 `jashiwe.github.io`**（GitHub 对同名仓库会自动建用户站点）。改名后同样不用改文件，只把 `hugo.yaml` 里的 `baseURL` 换成新地址即可（workflow 本来就会自动覆盖，改它只是为了本地编译的绝对链接正确）。
 
 ---
 
@@ -157,15 +163,15 @@ git push
 - **省事**：不管它，黄色底不影响观感
 - **干净**：把 `static/css/custom.css` 里的 `.todo { background: lightyellow; }` 删掉，黄色全部消失（这条规则**只有一处**，删了就真没了）
 
-### 发布前必须填掉 / 确认的
+### 还缺的信息（页面上是浅黄底）
 
-- [ ] 首页三段自我介绍（`content/_index.md`）
-- [ ] 「关于」页的研究方向、学术背景时间线（`content/about/index.md`）
-- [ ] 代表论文表的**卷期页码**——不确定的写「待确认」，别硬编
-- [ ] 地方标准号、专利号、论著出版社与年份
-- [ ] 联系邮箱、单位地址
-- [ ] 页脚版权年份（现在是 2026，在 `layouts/partials/footer.html`）
-- [ ] `hugo.yaml` 里的 `title` 和 `description` 是否就用「张献伟」
+- [x] 首页三段自我介绍（`content/_index.md`）——已按简历写好
+- [x] 「关于」页研究方向、学术背景、论文 19 篇、课题、成果、软著——已按简历填好
+- [ ] **参编论著的书名 / 出版社 / 年份**（`content/about/index.md`「其他成果」最后一条）
+- [ ] **联系邮箱**（同上「联系」一节）
+- [ ] **单位地址**（写到科室一级即可，不用门牌号）
+- [ ] 首页那句引文是我替你起草的，换成你自己的话或整段删掉
+- [ ] 页脚版权年份是动态的（`now.Year`），不用管
 
 > 涉及单位、职务、成果数量这类可能被外人当真的信息，宁可空着也别凑。这站是给人看的门面，不是台账。
 
