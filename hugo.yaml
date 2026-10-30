@@ -1,0 +1,36 @@
+# ==========================================================================
+# Hugo 站点配置
+# 改完这一页，`hugo server` 会立刻热更新；推到 GitHub 后云端也会自动重新编译。
+# ==========================================================================
+
+# 线上地址。部署到 GitHub Pages 时，workflow 会用 actions/configure-pages
+# 自动探测真实地址并覆盖这一项，所以这里填不填、填什么都不影响发布。
+# 用 `hugo server` 本地预览时也会被自动改成 http://localhost:1313/。
+baseURL: "https://example.github.io/"
+
+languageCode: "zh-cn"
+title: "张献伟"
+
+# 生成 sitemap.xml 和 robots.txt，搜索引擎收录用
+enableRobotsTXT: true
+
+params:
+  author: "张献伟"
+  description: "张献伟的个人主页"
+
+# 不生成标签页和分类页。文章里照常可以写 tags，只是不单独出页面，
+# 免得站里多出一堆内容是空的列表页。
+disableKinds:
+  - taxonomy
+  - term
+
+markup:
+  goldmark:
+    renderer:
+      # 允许 Markdown 里写原始 HTML。必须开着：
+      # 占位标记 <span class="todo"> 就是靠它才能透传出来的。
+      unsafe: true
+  highlight:
+    # 关掉 Chroma 语法高亮。它会给代码块塞一堆行内色值，
+    # 直接盖掉 style.css 里那套「细边框 + 淡阴影」的样式。
+    codeFences: false

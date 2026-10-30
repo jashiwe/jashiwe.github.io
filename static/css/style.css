@@ -1,0 +1,286 @@
+/* ==========================================================================
+   style.css — 主版式
+   视觉语言复刻自 yihui.org（hugo-xmin 主题）
+   纯手写 CSS，无框架、无构建步骤，可直接部署到 GitHub Pages
+   ========================================================================== */
+
+:root {
+  /* 版心：正文 992px 宽，文章正文再收窄到 620px */
+  --body-width: 992px;
+  --text-width: 620px;
+
+  --bg-body: #ffffff;
+  --bg-block: #f9f9f9;
+  --border-color: #ddd;
+  --box-shadow: 5px 5px 5px #eee;
+  --ink: #000;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  max-width: var(--body-width);
+  min-height: calc(100vh - 3em);
+  margin: auto;
+  padding: 1em;
+  line-height: 1.5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  counter-reset: pageNumber;
+  background-color: var(--bg-body);
+  color: var(--ink);
+}
+
+/* --------------------------------------------------------------------------
+   裁切线（crop marks）—— 整个站点最有辨识度的一个细节
+   crop-h / crop-v 各画两条 1px 细线，crop-c 用一块背景色粗边框把四个角盖住，
+   于是只在四角留出印刷品式的裁切标记。
+   窄屏下隐藏（见文末 media query）。
+   -------------------------------------------------------------------------- */
+.crop-h, .crop-v, .crop-c {
+  position: absolute;
+  z-index: -1;
+}
+.crop-h { inset: 2em 0; border-top: 1px solid; border-bottom: 1px solid; }
+.crop-v { inset: 0 2em; border-left: 1px solid; border-right: 1px solid; }
+.crop-c { inset: 1em; border: 1.5em solid var(--bg-body); }
+
+/* --------------------------------------------------------------------------
+   顶部导航
+   -------------------------------------------------------------------------- */
+.nav-top {
+  display: flex;
+  flex-wrap: wrap;   /* 窄屏菜单项多时换行，不硬挤成横向滚动 */
+  justify-content: space-between;
+  margin-bottom: 1em;
+  border-bottom: 1px solid;
+}
+.logo {
+  font-weight: bold;
+  margin-top: .5rem;
+}
+/* 如果以后想放一张手写体签名图，把 <img> 放进 .logo 即可，这里已经写好样式 */
+.logo img {
+  display: none;
+  max-height: 4rem;
+  position: absolute;
+  top: 2em;
+}
+.menu {
+  text-transform: uppercase;
+  margin-left: 2em;
+}
+.menu span {
+  display: inline-block;
+  margin: .5rem 0 0 1em;
+}
+/* 当前页：一条 5px 粗下划线，负边距让它压在导航的 1px 分割线上 */
+.menu .active { border-bottom: 5px solid; margin-bottom: -5px; }
+
+/* --------------------------------------------------------------------------
+   页脚
+   -------------------------------------------------------------------------- */
+footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+.nav-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+/* 首页的页脚是居中的单行，不左右分栏 */
+.home + footer > .nav-bottom { display: block; }
+
+/* --------------------------------------------------------------------------
+   正文
+   -------------------------------------------------------------------------- */
+.main, .home {
+  flex-grow: 1;
+  hyphens: auto;
+}
+.cn .main { line-height: 1.75; }
+
+/* 链接：无下划线，用虚线下边框；hover 时整体右下偏移 1px，像被按了一下 */
+a {
+  text-decoration: none;
+  border-bottom: 1px dashed;
+  color: inherit;
+}
+@media (hover: hover) and (pointer: fine) {
+  :not(.logo) > a:hover { position: relative; inset: 1px 0 0 1px; }
+}
+nav a, footer a, .archive a, sup a { border-bottom: none; }
+
+/* 段落、列表、引文 */
+p { margin: 1em 0; }
+ol, ul { padding: 0 0 0 20px; }
+ol ol { list-style: lower-roman; }
+li { margin: 4px 0; }
+blockquote {
+  margin: 1em 0;
+  padding: 0 2em;
+  border-left: 2px solid var(--border-color);
+}
+hr {
+  border-style: dashed;
+  color: var(--border-color);
+}
+img, iframe, video { max-width: 100%; }
+
+/* 标题 */
+.main h1, .main h2 { text-align: center; margin: 2em 0 1em; }
+.main h2 { line-height: 1.25; border-bottom: 1px solid var(--border-color); }
+.main h3 { font-variant: small-caps; text-align: center; }
+
+/* 单页文章的大标题，背后衬一个大号花饰
+   （中文标题不倾斜，见 fonts.css 里的 .cn .title） */
+h1.title {
+  font-style: italic;
+  margin-top: 2em;
+  width: fit-content;   /* 盒子收缩到文字宽度，花饰才会落在标题上，而不是飘到整行中间 */
+  position: relative;
+  z-index: 0;      /* 自建层叠上下文，花饰的 z-index:-1 只退到标题文字后面，
+                      不会一路掉到页面背景之下，也不会溢出到下面的元信息行 */
+}
+h1.title::before {
+  content: "➶";   /* 主题原版是 "❧"，但那个字形会压住标题，这里跟原站用 "➶" */
+  font-style: normal;
+  font-weight: normal;
+  font-size: 5.5em;
+  line-height: 1;
+  color: var(--border-color);
+  opacity: .5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);   /* 略偏上，让花饰压在标题上沿而不是串到下一行 */
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 文章元信息：作者 / 日期 / 标签，一行排开 */
+.article-meta { margin-bottom: 2em; }
+.meta-line {
+  display: flex;
+  justify-content: space-between;
+  font-weight: normal;
+}
+.author + .date::before { content: " / "; }
+.term { font-size: .9em; }
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.post-nav span { width: calc(50% - 1em); }
+.post-nav span + span { text-align: right; }
+
+/* --------------------------------------------------------------------------
+   日志归档列表：年份做小标题，条目是「日期 + 标题」
+   -------------------------------------------------------------------------- */
+.archive { width: 100%; max-width: none; }
+.archive > h2 { text-align: initial; }
+.archive > ul > li { list-style: none; }
+.archive li span:first-child,
+.main > ul > li > span:first-child,
+.main > p > span:first-child,
+.subtitle, .stats {
+  color: #666;
+  font-size: .9em;
+}
+
+/* --------------------------------------------------------------------------
+   带虚线引导线的目录行（hugo-xmin 的书卷气细节，留给以后做目录用）
+   -------------------------------------------------------------------------- */
+.toc-line { display: flex; align-items: flex-end; }
+.dots {
+  border-bottom: 2px dotted var(--border-color);
+  margin: 0 .5em .5em;
+  min-width: 10rem;
+  flex-grow: 1;
+}
+
+/* --------------------------------------------------------------------------
+   代码与表格
+   -------------------------------------------------------------------------- */
+code {
+  hyphens: none;
+  font-size: .95em;
+}
+pre, code { font-size: .95em; }
+pre code {
+  display: block;
+  padding: 1em;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
+}
+:not(pre) > code { background: var(--bg-block); padding: .1em .3em; }
+
+table {
+  min-width: 50%;
+  margin: auto;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+}
+table thead th { border-bottom: 1px solid var(--border-color); }
+table th, table td { padding: 5px; }
+table thead, table tfoot, table tr:nth-child(even) { background: var(--bg-block); }
+
+/* --------------------------------------------------------------------------
+   占位标记
+   规则写在 custom.css 里（只此一处），方便你填完内容后整条删掉。
+   -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   响应式
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  body { padding: 3.5em 2.5em; }
+  .main { margin: auto; width: var(--text-width); }
+  /* 宽元素（代码块、表格）破格撑到版心宽度 */
+  pre, table, .fullwidth {
+    width: calc(min(100vw, var(--body-width)) - 5rem);
+    margin-left: calc(50% + 2.5rem - min(100vw, var(--body-width)) / 2);
+  }
+  .logo img, .menu .optional { display: inline-block; }
+  .twocolumn { columns: 2; }
+}
+
+@media only screen and (min-width: 992px) {
+  body { min-height: calc(100vh - 5em); margin: 2em auto; }
+  .home { padding: 0 2em; }
+  pre code { white-space: pre; }
+}
+
+/* 窄屏下没有裁切线：小屏幕上这圈线只会变成视觉噪音 */
+@media (max-width: 767px) {
+  .crop-h, .crop-v, .crop-c { display: none; }
+  /* 花饰同步缩小，否则 5.5em 在 400px 宽的手机上会顶到边缘 */
+  h1.title::before { font-size: 4em; }
+}
+
+/* --------------------------------------------------------------------------
+   深色模式
+   思路和 yihui.org 一致：整体反相。图片再反相一次以还原成正常颜色，
+   否则照片会变成负片。
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-body: #dedad6;
+    --bg-block: #d6d1cc;
+    --border-color: #999;
+    --box-shadow: 5px 5px 5px #ccc;
+  }
+  html { filter: invert(1); }
+  img, video, iframe { filter: invert(1); }
+}
+
+/* 打印：去掉导航、页脚和装饰 */
+@media print {
+  footer, .nav-top, .post-nav, h1.title::before { display: none; }
+  .cn .main { text-align: justify; }
+}

@@ -1,0 +1,23 @@
+{{ define "bodyclass" }}cn{{ end }}
+
+{{ define "main" }}
+
+<h1 class="title">{{ .Title }}</h1>
+
+<div class="main archive">
+
+{{ .Content }}
+
+{{- /* 按年份分组，年份倒序；组内文章按日期倒序。加文章不需要动这一页。 */}}
+{{- range .Pages.GroupByDate "2006" }}
+<h2>{{ .Key }}</h2>
+<ul>
+  {{- range .Pages }}
+  <li><span>{{ .Date.Format "2006-01-02" }}</span> <a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+  {{- end }}
+</ul>
+{{- end }}
+
+</div>
+
+{{ end }}

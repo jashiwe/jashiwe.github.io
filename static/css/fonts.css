@@ -1,0 +1,70 @@
+/* ==========================================================================
+   fonts.css — 字体栈
+   拉丁字母走 Palatino，中文回落到思源宋体一类；引文用楷体。
+   全部只用系统已装字体，不加载任何网络字体，国内访问不会有任何延迟。
+   ========================================================================== */
+
+:root {
+  /* 拉丁衬线：Windows 上命中 Palatino Linotype，macOS 上命中 Palatino */
+  --font-latin: Palatino, "Palatino Linotype", "Palatino LT STD",
+                "Book Antiqua", "Latin Modern Roman", Georgia;
+
+  /* 中文宋体：优先思源宋体，没装则回落系统宋体 */
+  --font-cn: "Source Han Serif SC", "Source Han Serif CN", "Noto Serif CJK SC",
+             "Songti SC", STSong, SimSun;
+
+  --font-serif: var(--font-latin), var(--font-cn), serif;
+
+  /* 楷体：引文、诗词、注释用，yihui 的一个标志性味道 */
+  --font-kai: "Kaiti SC", STKaiti, Kaiti, KaiTi, "LXGW WenKai",
+              "AR PL UKai CN", var(--font-cn), serif;
+
+  --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+
+body { font-family: var(--font-serif); }
+
+/* 引文换成楷体 */
+.home blockquote,
+.cn blockquote,
+.kai {
+  font-family: var(--font-kai);
+}
+
+/* 中文里不用伪斜体：楷体自带倾斜感，标题和强调都不做字形变形
+   （原站 yihui.org 同样是 .cn em, .cn .title { font-style: normal }） */
+.cn em, .cn .title { font-style: normal; }
+
+/* 代码用等宽字体，不用楷体——楷体代码在实际使用中可读性太差 */
+code, pre, kbd, samp { font-family: var(--font-mono); }
+
+/* 由 Latin 决定字宽，中文不参与断字 */
+.cn { font-kerning: normal; }
+
+/* ==========================================================================
+   可选：加载思源宋体
+   中文观感能不能贴近原站，几乎全看这一步。
+   上面用的是系统字体，Windows 没装思源宋体时会回落到宋体（SimSun），
+   笔画比你看到的 yihui.org 略粗、略硬。
+
+   想要原味，两种办法，任选其一：
+
+   ① 本地安装思源宋体（推荐，零代价）
+      下载安装 Source Han Serif SC 后，上面的字体链会自动命中，什么都不用改。
+      https://github.com/adobe-fonts/source-han-serif/releases
+
+   ② 网页字体（不装字体也能生效，但要下载 1–2MB）
+      把下面这段取消注释即可。jsDelivr 在国内基本可达，直接引 Google Fonts 不行。
+
+   @font-face {
+     font-family: 'Source Han Serif SC Web';
+     src: url('https://cdn.jsdelivr.net/npm/cn-fontsource-source-han-serif-sc-regular/font.woff2') format('woff2');
+     font-display: swap;
+   }
+   :root {
+     --font-cn: 'Source Han Serif SC Web', var(--font-cn);
+   }
+
+   注意：网页字体只解决正文；标题和引文还需对应的粗体、楷体字形，
+   想要完全还原，还是本地装字体最稳。
+   ========================================================================== */

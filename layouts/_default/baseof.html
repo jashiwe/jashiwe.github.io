@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+
+  <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta property="og:type" content="website">
+
+  {{- /* relURL 会自动带上仓库子路径，换仓库名不用改任何链接 */}}
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/fonts.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/custom.css" | relURL }}">
+</head>
+
+<body class="{{ block "bodyclass" . }}cn{{ end }}">
+  <!-- 四周的印刷裁切线，纯装饰 -->
+  <div class="crop-h"></div><div class="crop-v"></div><div class="crop-c"></div>
+
+  {{ partial "nav.html" . }}
+
+  {{ block "main" . }}{{ end }}
+
+  {{ partial "footer.html" . }}
+</body>
+</html>

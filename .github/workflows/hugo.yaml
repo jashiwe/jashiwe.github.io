@@ -1,0 +1,66 @@
+name: 部署站点
+
+# 只要 main 分支有推送，GitHub 就会自动编译并在几分钟内上线。
+# 也可以在 Actions 页面手动点一次 Run workflow。
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时间只跑一个部署，避免两次推送打架
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出源码
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: 安装 Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          # 和你本机版本保持一致，避免本地预览与线上不一致
+          hugo-version: "0.152.2"
+          extended: true
+
+      - name: 配置 Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: 编译站点
+        env:
+          HUGO_ENVIRONMENT: production
+        # baseURL 由上一步自动探测，仓库改名或换到子路径都不用改配置
+        run: hugo --gc --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: 上传产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: 发布到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
