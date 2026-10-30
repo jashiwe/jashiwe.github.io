@@ -42,6 +42,10 @@ jobs:
       - name: 配置 Pages
         id: pages
         uses: actions/configure-pages@v5
+        with:
+          # 第一次跑时仓库里还没开 Pages，这一行让工作流自己去开，
+          # 省掉「先去 Settings 点一下」那一步。已经开过则自动跳过。
+          enablement: true
 
       - name: 编译站点
         env:

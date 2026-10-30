@@ -6,7 +6,7 @@
 # 线上地址。部署到 GitHub Pages 时，workflow 会用 actions/configure-pages
 # 自动探测真实地址并覆盖这一项，所以这里填不填、填什么都不影响发布。
 # 用 `hugo server` 本地预览时也会被自动改成 http://localhost:1313/。
-baseURL: "https://example.github.io/"
+baseURL: "https://jashiwe.github.io/Website/"
 
 languageCode: "zh-cn"
 title: "张献伟"
@@ -16,7 +16,7 @@ enableRobotsTXT: true
 
 params:
   author: "张献伟"
-  description: "张献伟的个人主页"
+  description: "张献伟，天津市疾病预防控制中心环境健康与学校卫生研究所，学校卫生与儿少卫生"
 
 # 不生成标签页和分类页。文章里照常可以写 tags，只是不单独出页面，
 # 免得站里多出一堆内容是空的列表页。
