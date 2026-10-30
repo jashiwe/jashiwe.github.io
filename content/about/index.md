@@ -37,10 +37,10 @@ date: 2026-10-30
 1. 2020　2017—2018 年天津市 18 家宾馆/酒店室内空气指标监测及其从业人员健康状况[J]. 职业与健康, 36(2): 207-210.
 1. 2019　2016—2018 年天津市大气 PM2.5 对儿童呼吸系统门诊量的时间序列分析[J]. 公共卫生与预防医学, 30(5): 29-32.
 
-### 通讯作者 / 共同第一作者
+### 合作论文（通讯作者 / 共同第一作者）
 
-1. 2026　中学生社会生态学风险因素和体育活动发展轨迹与抑郁症状的关联[J]. 中国学校卫生, 47(5): 676-679.（**张献伟**，通讯作者）
-1. 2026　Associations of general and abdominal adiposity with incident elevated blood pressure among Tianjin adolescents: a school-based longitudinal study. *BMC Public Health*. doi:10.1186/s12889-026-27691-9（**张献伟**，共同第一作者）
+1. 2026　中学生社会生态学风险因素和体育活动发展轨迹与抑郁症状的关联[J]. 中国学校卫生, 47(5): 676-679.（通讯作者）
+1. 2026　Associations of general and abdominal adiposity with incident elevated blood pressure among Tianjin adolescents: a school-based longitudinal study. *BMC Public Health*. doi:10.1186/s12889-026-27691-9（共同第一作者）
 1. 2025　天津市 9~18 岁儿童青少年生活方式对不同多病模式的累积效应分析[J]. 中华预防医学杂志, 59(2): 174-180.
 1. 2024　中学生健康危险行为与肥胖和抑郁症状的关联[J]. 中国学校卫生, 45(10): 1505-1510.
 1. 2024　天津市 2019—2023 年中小学生超重肥胖流行趋势及相关因素分析[J]. 中国学校卫生, 45(8): 1176-1180, 1185.
