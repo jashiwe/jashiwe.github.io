@@ -226,3 +226,37 @@ GitHub Actions 跑在 Linux 上，区分大小写；本地 Windows 不区分。�
 ```
 
 `custom.css` 里还留了一个 `.dropcap` 类——给任意段落加上，就是 yihui 首页那种首字下沉。用法：`<p class="dropcap">…</p>`。
+
+## 九、条文对照类长文（规范 / 标准解读）
+
+像《托儿所、幼儿园建筑设计规范》局部修订解读那种"原文 + 增删标记 + 表格"的长文，有专门的排版支持。要用到的时候照下面写就行。
+
+**要不要宽栏**：front matter 里加一行 `wide: true`。正文仍然是 620px 的阅读宽度，只有表格会撑到版心宽度；章节标题也改成左对齐（工程技术文档从左往右扫，居中反而费眼）。
+
+**标增删**：直接用 HTML 的 `<ins>` 和 `<del>`，不用自己写 class。
+
+```markdown
+原文是 5~<del>9</del> <ins>8</ins> 班
+```
+
+- `<ins>` → 绿色 + 细下划线，表示新增
+- `<del>` → 灰色 + 删除线，表示删除
+
+**条文排版**：条文号和正文分开，条文号悬挂在左侧，长条文换行也会和正文对齐。
+
+```html
+<p class="cl" id="c4-1-9"><b class="cno">4.1.9</b> 条文正文……</p>
+<p class="it">1 分项正文……</p>
+<p class="note">注：……</p>
+<p class="tb-cap">表4.1.17 表题</p>
+```
+
+`id` 是给锚点用的，写成 `c` 加条文号、点换横线（`4.1.9` → `c4-1-9`），这样 `…/jgj39-2019/#c4-1-9` 就能直接跳到那一条。
+
+**表格**：含合并单元格的表直接写 HTML `<table>`（goldmark 的 `unsafe` 已经开着，会原样透传），markdown 的竖线表格表达不了 `rowspan` / `colspan`。
+
+**从 docx 转**：`E:/Workbench/scripts/docx2hugo.py` 会把 Word 里的下划线（新增）和单线方框（删除）按 run 逐个读出来，转成上面这套结构，表格的合并单元格也一并保留。
+
+```
+python E:/Workbench/scripts/docx2hugo.py 原文.docx 正文.md
+```

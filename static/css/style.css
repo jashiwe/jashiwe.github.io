@@ -168,6 +168,8 @@ h1.title::before {
 }
 .author + .date::before { content: " / "; }
 .term { font-size: .9em; }
+/* 多个标签之间要看得见分隔，否则会连成一串 */
+.term-tag + .term-tag::before { content: " · "; }
 .post-nav {
   display: flex;
   justify-content: space-between;
@@ -283,4 +285,117 @@ table thead, table tfoot, table tr:nth-child(even) { background: var(--bg-block)
 @media print {
   footer, .nav-top, .post-nav, h1.title::before { display: none; }
   .cn .main { text-align: justify; }
+}
+
+/* ==========================================================================
+   规范 / 标准类长文
+   给条文对照类的文章用：修订标记（ins / del）、条文悬挂缩进、规范表格。
+   只在正文里生效，不影响首页和归档页。
+   ========================================================================== */
+
+/* 新增：绿色 + 细下划线。原文件是用 Word 下划线标的，这里保留这个语义。
+   不用整块底色 —— 一篇里几百处，铺满就看不出重点了。 */
+.single ins {
+  text-decoration: none;
+  border-bottom: 1px solid #6bb59b;
+  color: #14614a;
+}
+
+/* 删除：灰色 + 删除线（浏览器默认就有删除线，这里只管颜色） */
+.single del { color: #6d6d6d; }
+
+/* 条文：条文号悬挂在左，正文缩进对齐，长条目换行也不跟号混在一起 */
+.single .cl {
+  margin: .85em 0;
+  padding-left: 3.9em;
+  text-indent: -3.9em;
+}
+.single .cno {
+  display: inline-block;
+  width: 3.6em;
+  text-indent: 0;
+  font-weight: 600;
+}
+
+/* 分项：在条文正文基础上再缩一级 */
+.single .it {
+  margin: .55em 0;
+  padding-left: 5.6em;
+  text-indent: -1.7em;
+}
+
+.single .tb-cap {
+  margin: 1.6em 0 .35em;
+  text-align: center;
+  font-size: .92em;
+  color: #444;
+}
+
+.single .note {
+  font-size: .92em;
+  color: #555;
+}
+
+.single .lead-in { color: #666; font-size: .95em; }
+
+/* 规范表格：画全网格。原文件就是有竖线的三线以上表格，
+   合并单元格的归属要靠竖线才看得清。 */
+.single table { font-size: .92em; }
+.single table td {
+  border: 1px solid #e4e4e4;
+  text-align: left;
+  vertical-align: middle;
+}
+.single table thead td { font-weight: 600; }
+.single table tr:nth-child(even) { background: none; }
+.single table thead { background: var(--bg-block); }
+
+/* --------------------------------------------------------------------------
+   宽栏文章（front matter 里写 wide: true）
+   条文对照需要横向空间；正文仍然收在阅读宽度，只让表格破格。
+   -------------------------------------------------------------------------- */
+@media only screen and (min-width: 768px) {
+  /* 长标题在这类文章里容易折成两行，压一号让它回到一行，
+     花饰（➶）才不会顶在两行字中间 */
+  body.wide h1.title { font-size: 1.65em; }
+
+  body.wide .main h2,
+  body.wide .main h3,
+  body.wide .main h4 { text-align: left; }
+
+  body.wide .main h2 {
+    margin: 2.4em 0 .8em;
+    padding-bottom: .3em;
+  }
+
+  body.wide .main h3 {
+    font-variant: normal;
+    margin: 2em 0 .5em;
+    font-size: 1.05em;
+  }
+
+  body.wide .main h4 {
+    margin: 1.6em 0 .4em;
+    font-size: .98em;
+    font-weight: 600;
+    color: #333;
+  }
+
+  /* 表格撑到版心宽度，正文不动 */
+  body.wide .main table {
+    width: calc(min(100vw, var(--body-width)) - 5rem);
+    max-width: none;
+    margin-left: calc(50% + 2.5rem - min(100vw, var(--body-width)) / 2);
+  }
+}
+
+/* 窄屏：悬挂缩进收窄，否则一行剩不下几个字 */
+@media only screen and (max-width: 767px) {
+  /* 条文号最长是 4.1.17A 这类 7 个字符，窄屏也得留够，否则会把正文挤歪 */
+  .single .cl { padding-left: 3.2em; text-indent: -3.2em; }
+  .single .cno { width: 3.2em; }
+  .single .it { padding-left: 3.8em; text-indent: -1.5em; }
+  body.wide .main h2,
+  body.wide .main h3,
+  body.wide .main h4 { text-align: left; }
 }
