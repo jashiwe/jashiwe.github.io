@@ -1,0 +1,297 @@
+<div class="deck">
+
+<section class="deck-card deck-cover">
+  <div class="deck-bar"><span class="deck-eyebrow">Slidev · 上手记</span><span class="deck-num">01<span class="deck-total">/16</span></span></div>
+  <div class="deck-body deck-cover-body">
+    <h2 class="deck-cover-title">把汇报材料<br>做成网页 PPT</h2>
+    <p class="deck-cover-sub">装什么 · 怎么写 · 四个坑</p>
+  </div>
+  <div class="deck-cover-foot"><span>张献伟</span><span>天津市疾控中心　学校卫生研究所</span><span>2026-11</span></div>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">起因</span><span class="deck-num">02<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>改一个数，要动十页版式</h2>
+    <div class="deck-cols">
+      <div class="deck-col">
+        <h3 class="deck-kicker">一是反复改</h3>
+        <p>数据等区里报上来，报一批改一批。</p>
+        <p>每改一次，文本框得跟着挪，页码全乱。</p>
+      </div>
+      <div class="deck-col">
+        <h3 class="deck-kicker">二是版本混乱</h3>
+        <p>文件名从「终稿」到「终稿-修改-最终-v3」。</p>
+        <p>最后谁也说不清哪个是发出去的。</p>
+      </div>
+    </div>
+  </div>
+  <p class="deck-foot">做试点考核、培训讲义这类材料，内容其实不复杂——麻烦都在这两件事上。</p>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">换个思路</span><span class="deck-num">03<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>整个演示文稿，就是一个纯文本文件</h2>
+    <div class="deck-cols">
+      <div class="deck-col">
+        <p class="deck-big"><code>slides.md</code></p>
+        <ul class="deck-list">
+          <li>用 Markdown 写，一个 <code>---</code> 一页</li>
+          <li>浏览器负责渲染，<code>Ctrl+S</code> 立刻刷新</li>
+          <li>需要 Node.js，双击打不开</li>
+        </ul>
+      </div>
+      <div class="deck-col">
+        <p class="deck-big">版式交给主题</p>
+        <ul class="deck-list">
+          <li>内容变了，版式自己跟着走</li>
+          <li>不用手动挪框、不用重排</li>
+          <li>一份纯文本，扔进 Git 就有版本记录</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="deck-foot">它解决的其实不是「设计」问题，是内容与版式解耦。</p>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">代价</span><span class="deck-num">04<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>代价先说在前面</h2>
+    <ul class="deck-list">
+      <li>网页技术栈，要装 Node.js，不能像 PPT 那样双击就开</li>
+      <li>重动画、复杂母版、嵌入 Excel 图表——做得到，成本比 PPT 高</li>
+      <li>离线机器上临时改一页，不如直接开 PowerPoint</li>
+    </ul>
+  </div>
+  <p class="deck-callout">如果最终交付物必须是 <code>.pptx</code> 文件，它不合适。</p>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">安装</span><span class="deck-num">05<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>先看环境，再两条命令</h2>
+    <p>要求 Node.js ≥ 22.12，先查一下：</p>
+    <pre><code>node -v
+
+npm i -g pnpm          # 没装过 pnpm 才需要
+pnpm create slidev     # 交互式，一路回车
+cd &lt;项目名&gt;
+pnpm dev               # 自动打开 localhost:3030</code></pre>
+  </div>
+  <p class="deck-foot">起来之后就不用管了，改文件自动热更新，不用重启、不用重敲命令。</p>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">安装</span><span class="deck-num">06<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>项目里只有四个东西</h2>
+    <table>
+      <thead><tr><th>路径</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><code>slides.md</code></td><td><strong>全部内容都在这里</strong>，唯一要改的文件</td></tr>
+        <tr><td><code>package.json</code></td><td>定义 dev / build / export 几个命令</td></tr>
+        <tr><td><code>public/</code></td><td>放图片，正文里用 <code>/图名.png</code> 引用</td></tr>
+        <tr><td><code>node_modules/</code></td><td>依赖，不用管</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="deck-foot">不用记目录结构。需要改的永远是同一个文件。</p>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">结构</span><span class="deck-num">07<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>一个 <code>---</code> 就是一页</h2>
+    <div class="deck-cols deck-cols-wide">
+      <div class="deck-col deck-col-code">
+<pre><code>---
+theme: default        # ← headmatter：管全局
+fonts:
+  provider: none
+  sans: 'Microsoft YaHei'
+---
+
+---
+layout: cover         # ← frontmatter：只管这一页
+---
+
+# 第一页标题
+
+正文照常写。
+
+---
+</code></pre>
+      </div>
+      <div class="deck-col">
+        <ul class="deck-list">
+          <li><strong>文件最顶部</strong>那块叫 headmatter，管全局：主题、字体、翻页动画</li>
+          <li><strong>每页开头</strong>那块 frontmatter，只管这一页：用哪个版式</li>
+          <li>剩下全是正文，Markdown 怎么写它就怎么写</li>
+        </ul>
+        <p class="deck-note">别在正文里随手写三条横线当分割线——它会变成翻页。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">排版</span><span class="deck-num">08<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>换版式，只改一个词</h2>
+    <table>
+      <thead><tr><th>layout</th><th>用途</th></tr></thead>
+      <tbody>
+        <tr><td><code>cover</code></td><td>封面</td></tr>
+        <tr><td><code>default</code></td><td>正文，最常用</td></tr>
+        <tr><td><code>section</code></td><td>章节分隔页</td></tr>
+        <tr><td><code>center</code></td><td>居中大字，用来压一句结论</td></tr>
+        <tr><td><code>two-cols</code></td><td>左右分栏，靠 <code>::left::</code> <code>::right::</code> 切</td></tr>
+        <tr><td><code>fact</code></td><td>放一个大数字，一页只说一件事</td></tr>
+        <tr><td><code>quote</code></td><td>引文</td></tr>
+        <tr><td><code>end</code></td><td>结尾页</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">排版</span><span class="deck-num">09<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>微调样式，三个原子类够用</h2>
+    <pre><code>&lt;div class="mt-8 p-4 border-l-4 border-blue-500 bg-blue-50"&gt;
+  一段说明文字
+&lt;/div&gt;</code></pre>
+    <div class="deck-chips">
+      <span class="deck-chip"><code>mt-*</code>上边距</span>
+      <span class="deck-chip"><code>text-sm</code>字号</span>
+      <span class="deck-chip"><code>opacity-60</code>灰字</span>
+    </div>
+  </div>
+  <p class="deck-foot">UnoCSS 原子类直接写在标签上，不用碰 CSS 文件。做汇报材料，这三个就够了。</p>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">中文环境</span><span class="deck-num">10<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>四个坑，我都实际踩过</h2>
+    <table class="deck-table-tight">
+      <thead><tr><th>坑</th><th>现象</th><th>解法</th></tr></thead>
+      <tbody>
+        <tr><td>npm 官方源</td><td>装包卡在解析阶段，二十分钟不动</td><td>项目里放 <code>.npmrc</code> 指向 <code>registry.npmmirror.com</code></td></tr>
+        <tr><td>字体</td><td>首屏白等十几秒，中文变回退字体</td><td>headmatter 写 <code>fonts: provider: none</code>，<code>sans</code> 指定微软雅黑</td></tr>
+        <tr><td>markdown-it 版本</td><td>启动直接崩：<code>ERR_PACKAGE_PATH_NOT_EXPORTED</code></td><td>显式写 <code>"markdown-it": "^14.3.3"</code>，再 <code>install --force</code></td></tr>
+        <tr><td>正文尖括号</td><td>编译报 <code>Element is missing end tag</code></td><td>别直接写 <code>&lt;v-click&gt;</code>，用 <code>&lt;code&gt;</code> 包起来</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="deck-foot">第三个最费时间：报错指向生成的临时文件，看不出是版本问题，得往上翻才见 peer 冲突的警告。</p>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">讲解</span><span class="deck-num">11<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>正文只放关键词，话写在注释里</h2>
+    <div class="deck-cols deck-cols-wide">
+      <div class="deck-col deck-col-code">
+<pre><code>## 结果判定
+
+- 优秀：必查项全部达标
+- 合格：必查项基本完成
+
+&lt;!--
+这里写口头要讲的话：
+等级怎么划的、否决项有哪几条。
+观众看不到，演讲者模式里看得到。
+--&gt;</code></pre>
+      </div>
+      <div class="deck-col">
+        <p class="deck-big">备注比页面重要</p>
+        <ul class="deck-list">
+          <li>观众看到的页面上只有关键词</li>
+          <li>完整句子写在 HTML 注释里</li>
+          <li>讲的时候按 <kbd>p</kbd>，备注就在手边</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">讲解</span><span class="deck-num">12<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>演示时按这几个键就够</h2>
+    <table>
+      <thead><tr><th>键</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>空格</kbd> / <kbd>→</kbd></td><td>下一页</td></tr>
+        <tr><td><kbd>o</kbd></td><td>缩略图总览</td></tr>
+        <tr><td><kbd>p</kbd></td><td>演讲者模式（备注 + 下一页预览 + 计时器）</td></tr>
+        <tr><td><kbd>d</kbd></td><td>画笔，可以当场在页面上划重点</td></tr>
+        <tr><td><kbd>f</kbd></td><td>全屏</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="deck-foot">双屏汇报：主屏开 <code>localhost:3030/presenter</code>，投影那屏按 <kbd>f</kbd> 全屏。</p>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">讲解</span><span class="deck-num">13<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>观众看页面，你看备注和计时</h2>
+    <div class="deck-cols">
+      <div class="deck-col">
+        <h3 class="deck-kicker">主屏 · 讲者</h3>
+        <p class="deck-big">/presenter</p>
+        <p>当前页 + 下一页预览 + 备注 + 计时器</p>
+      </div>
+      <div class="deck-col">
+        <h3 class="deck-kicker">投影 · 观众</h3>
+        <p class="deck-big"><kbd>f</kbd> 全屏</p>
+        <p>只看到干净的幻灯片</p>
+      </div>
+    </div>
+  </div>
+  <p class="deck-foot">这一套比 PowerPoint 的演讲者视图还顺一点——页面自带计时，不用另开窗口盯表。</p>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">导出</span><span class="deck-num">14<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>PDF 保真，PPTX 会走样</h2>
+    <pre><code>pnpm add -D playwright-chromium   # 首次导出前装一次
+pnpm export                       # PDF
+pnpm export-pptx                  # PPTX</code></pre>
+    <div class="deck-cols">
+      <div class="deck-col"><h3 class="deck-kicker">PDF</h3><p>浏览器直接打印，所见即所得，1:1 保真。</p></div>
+      <div class="deck-col"><h3 class="deck-kicker">PPTX</h3><p>每页被「拍平」成近似图片，表格和分栏的位置会漂，字号也对不齐。</p></div>
+    </div>
+  </div>
+  <p class="deck-callout">发 PDF，别发 PPTX。单位非认 pptx 不可，就出两份，并注明以 PDF 为准。</p>
+</section>
+
+<section class="deck-card">
+  <div class="deck-bar"><span class="deck-eyebrow">边界</span><span class="deck-num">15<span class="deck-total">/16</span></span></div>
+  <div class="deck-body">
+    <h2>它不适合什么</h2>
+    <ul class="deck-list">
+      <li><strong>交付物必须是 pptx</strong>：会走样，别硬扛</li>
+      <li><strong>多人协同改稿</strong>：Markdown 对非技术同事不友好，不如腾讯文档</li>
+      <li><strong>重动画、复杂母版、嵌入 Excel 图表</strong>：做得到，但成本更高</li>
+      <li><strong>离线机器上临时改一页</strong>：要 Node 环境，不如直接开 PPT</li>
+    </ul>
+  </div>
+  <p class="deck-foot">它适合的是：自己的讲稿、培训讲义、需要反复改数据的汇报——自己写、自己讲、改动频繁，还要留一份可检索的纯文本存档。</p>
+</section>
+
+<section class="deck-card deck-end">
+  <div class="deck-bar"><span class="deck-eyebrow">小结</span><span class="deck-num">16<span class="deck-total">/16</span></span></div>
+  <div class="deck-body deck-end-body">
+    <p class="deck-big deck-big-xl">版式交给主题，<br>人只管把话说清楚。</p>
+    <p>一份 <code>slides.md</code> 扔进 Git，改了什么、哪天改的，一目了然——这比文件名里塞五个「最终版」要可靠得多。</p>
+  </div>
+  <p class="deck-foot">以上这套页面，就是一份用 Slidev 思路排出来的稿子。</p>
+</section>
+
+</div>

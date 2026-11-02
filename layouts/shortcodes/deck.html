@@ -1,0 +1,5 @@
+{{- /* 把页面资源里的 deck.html 原样吐出来。
+      写成短代码是为了让 HTML 不进 Markdown 解析器，免得被当成段落拆散。 */ -}}
+{{- with .Page.Resources.GetMatch "deck.html" -}}
+{{ .Content | safeHTML }}
+{{- end -}}

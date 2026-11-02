@@ -48,6 +48,314 @@
 }
 
 /* ==========================================================================
+   幻灯片版式（deck）
+   用在「只发幻灯片本身」的文章里：一张卡片就是一页，纵向排列，滚动画廊。
+   刻意做成纯墨色（黑白灰 + 发丝线），因为深色模式是靠 html { filter: invert(1) }
+   整体反相实现的——任何彩色强调色都会被反转成怪颜色。
+
+   两个跟主版式打架的地方，必须先说清楚：
+   1) 样式表里像 `pre, table` 和 `body.wide .main table` 这类规则会给宽元素做
+      「破格」（撑到 912px 并往外位移）。在卡片里必须把它们按回去，否则表格
+      会冲出卡片。这些地方用 !important，因为全局规则的选择器权重更高。
+   2) 正文列只有 620px，做幻灯片太窄。这里沿用站点自己的破格公式，把整叠卡片
+      撑到 912px，和表格/代码块的破格宽度一致，视觉上才是同一套网格。
+   ========================================================================== */
+.deck {
+  --deck-ink: #14110f;
+  --deck-rule: #e6e2dc;
+  --deck-muted: #8a827a;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  margin: 2rem 0 2.6rem;
+  line-height: 1.55;   /* 盖掉 .cn .main 的 1.75，幻灯片里要密一点 */
+}
+
+@media only screen and (min-width: 768px) {
+  .deck,
+  .deck-hint {
+    width: calc(min(100vw, var(--body-width)) - 5rem);
+    margin-left: calc(50% + 2.5rem - min(100vw, var(--body-width)) / 2);
+  }
+}
+
+.deck-hint { margin-bottom: .2rem; }
+.deck-hint kbd {
+  display: inline-block;
+  padding: .05em .38em;
+  border: 1px solid var(--border-color);
+  border-bottom-width: 2px;
+  font-size: .86em;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   单页卡片：严格的 16:9
+   -------------------------------------------------------------------------- */
+.deck-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 16 / 9;
+  padding: 1.9rem 2.2rem;
+  background: var(--bg-body);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
+}
+
+/* 内容区：在「顶部栏」和「页脚注」之间垂直居中。
+   短内容的页（比如只有两栏几句）才不会在中间空出一大块。 */
+.deck-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 1rem;   /* 略偏上一点，视觉重心比几何中心舒服 */
+}
+
+/* 顶部栏：左上角栏目名，右上角页码 */
+.deck-bar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: .6rem;
+  margin-bottom: 1.15rem;
+  border-bottom: 1px solid var(--deck-rule);
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--deck-muted);
+}
+.deck-num {
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  letter-spacing: .1em;
+  color: var(--ink);
+}
+.deck-total { color: var(--deck-muted); }
+
+/* 页内标题：左对齐、无下划横线（盖掉 .main h2 与 body.wide .main h2） */
+.deck-card h2 {
+  margin: 0 0 .9rem !important;
+  padding-bottom: 0 !important;
+  border-bottom: 0;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+.deck-card h3 { text-align: left; }
+.deck-card p { margin: .45rem 0; text-align: left; }
+
+/* 分栏 */
+.deck-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.3rem 2rem;
+}
+.deck-cols-wide { grid-template-columns: 1.04fr .96fr; }
+.deck-col { min-width: 0; }
+
+.deck-card h3.deck-kicker {
+  margin: 0 0 .55rem !important;
+  padding-bottom: .3rem;
+  border-bottom: 1px solid var(--deck-rule);
+  font-size: .76rem !important;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-align: left !important;
+  color: var(--deck-muted);
+}
+
+/* 要点列表：去掉项目符号，用短横线 + 发丝分隔 */
+.deck-list { list-style: none; padding: 0; margin: .2rem 0 0; }
+.deck-list li {
+  position: relative;
+  padding: .45rem 0 .45rem 1.2rem;
+  border-bottom: 1px solid var(--deck-rule);
+  font-size: .92rem;
+  line-height: 1.5;
+}
+.deck-list li:last-child { border-bottom: 0; }
+.deck-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1rem;
+  width: .5rem;
+  height: 1px;
+  background: var(--deck-muted);
+}
+
+/* 一句话结论 */
+.deck-card p.deck-big {
+  margin: .1rem 0 .7rem;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+}
+.deck-card p.deck-big-xl { font-size: 2rem; line-height: 1.38; }
+
+/* 页脚注：始终贴到卡片底部 */
+.deck-card p.deck-foot {
+  margin: auto 0 0;
+  padding-top: .7rem;
+  border-top: 1px solid var(--deck-rule);
+  font-size: .8rem;
+  line-height: 1.55;
+  color: #6f6862;
+}
+
+.deck-card p.deck-note {
+  margin-top: .9rem;
+  padding-left: .7rem;
+  border-left: 2px solid var(--deck-rule);
+  font-size: .8rem;
+  color: var(--deck-muted);
+}
+
+.deck-card p.deck-callout {
+  margin: auto 0 0;
+  padding: .7rem .95rem;
+  background: var(--bg-block);
+  border-left: 3px solid var(--ink);
+  font-size: .92rem;
+}
+
+/* 原子类小标签 */
+.deck-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: .6rem 0; }
+.deck-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .45rem;
+  padding: .3rem .6rem;
+  border: 1px solid var(--deck-rule);
+  background: var(--bg-block);
+  font-size: .8rem;
+}
+.deck-chip code { padding: 0; background: none; font-size: .78rem; }
+
+/* --------------------------------------------------------------------------
+   卡片里的代码与表格：压紧，且必须按回卡片内（撤销全局破格）
+   -------------------------------------------------------------------------- */
+.deck-card pre {
+  width: auto !important;
+  max-width: 100%;
+  margin: .5rem 0 .7rem !important;
+}
+.deck-card pre code {
+  padding: .8rem 1rem;
+  font-size: .76rem;
+  line-height: 1.6;
+  white-space: pre;
+  overflow-x: auto;
+  border: 1px solid var(--deck-rule);
+  box-shadow: none;
+  background: var(--bg-block);
+}
+.deck-card table {
+  width: 100% !important;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0 0 .4rem !important;
+  font-size: .82rem;
+  border-top: 1px solid #c8c2ba;
+  border-bottom: 1px solid #c8c2ba;
+}
+.deck-card thead th,
+.deck-card td {
+  padding: .36rem .5rem;
+  text-align: left;
+  vertical-align: top;
+}
+.deck-card tbody tr { border-bottom: 1px solid var(--deck-rule); }
+.deck-card tbody tr:last-child { border-bottom: 0; }
+.deck-card table.deck-table-tight { font-size: .74rem; }
+
+.deck-card kbd {
+  display: inline-block;
+  padding: .05em .38em;
+  border: 1px solid var(--border-color);
+  border-bottom-width: 2px;
+  background: var(--bg-block);
+  font-size: .86em;
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   封面页与结尾页
+   -------------------------------------------------------------------------- */
+.deck-card.deck-cover {
+  background: var(--deck-ink);
+  border-color: var(--deck-ink);
+  color: #f2efe9;
+}
+.deck-cover .deck-bar { border-bottom-color: #322d28; color: #9a928a; }
+.deck-cover .deck-num { color: #f2efe9; }
+.deck-cover .deck-total { color: #6f6862; }
+.deck-cover-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.deck-card.deck-cover h2.deck-cover-title {
+  margin: 0 0 1.1rem !important;
+  font-size: 3rem;
+  line-height: 1.16;
+  color: #f7f4ef;
+}
+.deck-card .deck-cover-sub {
+  margin: 0;
+  font-size: .95rem;
+  letter-spacing: .28em;
+  color: #a39a90;
+}
+.deck-cover-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: .8rem;
+  border-top: 1px solid #322d28;
+  font-size: .74rem;
+  letter-spacing: .1em;
+  color: #8b8378;
+}
+
+.deck-end-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   窄屏：放弃 16:9，让卡片随内容长高
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .deck { gap: 1.4rem; width: 100%; margin-left: 0; }
+  .deck-card { aspect-ratio: auto; padding: 1.3rem 1.2rem; }
+  .deck-cols,
+  .deck-cols-wide { grid-template-columns: 1fr; gap: 1rem; }
+  .deck-card.deck-cover h2.deck-cover-title { font-size: 2rem; }
+  .deck-cover-foot { flex-direction: column; gap: .3rem; }
+  .deck-card table,
+  .deck-card table.deck-table-tight { font-size: .76rem; }
+  .deck-card pre code { font-size: .7rem; }
+}
+
+/* 打印：一张卡片一页，直接 Ctrl+P 出 PDF */
+@media print {
+  .deck { gap: 0; margin: 0; }
+  .deck-card { break-after: page; box-shadow: none; }
+  .deck-card:last-child { break-after: auto; }
+}
+
+/* ==========================================================================
    可选：如果你想让首页像 yihui.org 那样，英文段落带首字下沉
    给那段 <p> 加 class="dropcap" 即可
    ========================================================================== */
